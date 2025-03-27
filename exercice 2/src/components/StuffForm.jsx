@@ -1,34 +1,41 @@
 import React, { useState } from "react";
 
-export default function StuffForm({ onAddStuff }) {
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
+export default function StuffForm({ addStuff }) {
+  const [name, setname] = useState('');
+  const [price, setprice] = useState('');
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (!name || !price) return;
+  const handleNameChange = (e) => {
+    setname(e.target.value);
+  };
 
-    onAddStuff({ name, price: parseFloat(price) });
-    setName("");
-    setPrice("");
+  const handlePriceChange = (e) => {
+    setprice(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    addStuff(name, price);
+    setname(""); 
+    setprice(""); 
   };
 
   return (
     <form className="stuff-form" onSubmit={handleSubmit}>
       <p>Stuff name</p>
       <input
-        type="search"
+        type="text"
         placeholder="Banana"
         value={name}
-        onChange={(e) => setName(e.target.value)}
+        onChange={handleNameChange}
       />
 
       <p>Stuff price</p>
       <input
-        type="search"
+        type="number"
         placeholder="15"
         value={price}
-        onChange={(e) => setPrice(e.target.value)}
+        onChange={handlePriceChange}
       />
 
       <button type="submit">Add Stuff</button>
