@@ -6,9 +6,9 @@ export default function StuffForm({ onAddStuff }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (!name || !price) return; // Prevent adding empty values
+    if (!name || !price) return;
 
-    onAddStuff({ name, price: parseFloat(price) }); // Send data to App
+    onAddStuff({ name, price: parseFloat(price) });
     setName("");
     setPrice("");
   };
